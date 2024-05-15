@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "may-hack-voice",
+  "private_key_id": "4751b03a59184424138b47dfb82b8dd5cee85b4e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCsUq47nNRaPsW4\nvou25csZM2dRvk6QFGj0yEA8Dsu+aIYc7djo8xQWPz9LMmmxlRlddvyR6eL0lOeN\nWoz8FbRYx6R40fsGoJGCm7iwtceVLE5WR2TEHqd4kAVk5cdT+rbFnKoVOpJctg8+\nn9soXFQccvGSZoQ+bYos3GAz/gKwkwOBIGRhdKWwkPchpxvDcuY/3kbQq5gYXIxV\ncBt4TWPVf+nRxvhP2FQ8LXZOl3BtiI5QPwe4vtnvfvareGIpGPcVISfHxZslwu1j\nHNVz+9H08F6Mbg3OhAdf0azGKMgCOFU0YnjWdz5puHD6ZbtamCYTAlLx9B4U6nkK\ndxnU/tr7AgMBAAECggEAH5I6V7Og+DO99935LPYm4qQXTtOmAyGqJQa3Ngmj7Gur\n/orZDbzTNkw6JWXEFYPylLwjA/ys1xCc57nqUJkNZKKXEIewDQPIBPzQtpdnTH5E\nj+wemwvetOj2BAlRHqK1b7kHNEJ55EB6xId3GIrp4hhxB9h+bA2XniZ1/bCQ/5Zx\n6T981OLGz0EdBD8Lcin/e4X3JOP4o8IM3bCYhinuaLwQPo/SiprGruXeUaiDeQZ4\nPJIewLPzdlhKXGG9n94PTndpGbccFoHrCMfmYY9p6TpM8LTfeuTd9+O16Zs2J6Kj\n8ksy+6x26EgIOvNyZeYD86/dvhLuNcof4UKL/0zz6QKBgQDzI8z+elcrlCr3EIT0\n5rn5GkT0rwVqjfaYvK+fY7+kMKZR0Go477Ls8fwYJN2K7BJaOJF7IkAMsFDXMHcZ\nPoxl3ANNCmLERGXwNkJKa8dVw/2va6cDNf7m0FPenj1UFaYO187F2pd32B3+Exqh\nSMwCmI+QX7MND8PBe8bQn6pILwKBgQC1b/6Pfe0bO3bx0SBz4+BxBt2uxhhBNEot\nritniDW5Rq/Tmu9u4U0jtaNuFBbJ8pd1YE+EYhLURsEdkY9z0nwKNT4D/jfssyOw\nK6k+6BmhzxSflb937y6cJEEQ+AfFpn50kL7++WmlP+cmiEtZqZJyiuP8dXTkOxt3\ndWSXX70a9QKBgQCgyyNNhADT/Bfx7kXPZCrHN300x+5wClRzrA0E/sWFQvsrDgbB\ngpu0oU+TdAXjUr3MVq63XO44tf2wYgfRdREKZ9bzAxRQMd+sXWW3q9FWwdeqRCpe\nMD5TzKA6kDGEwxBfro67QBV9lzo2hdHNqcPpT5VZ6EAUOkG+WiogXAcT1wKBgB31\n3m1HeA3VJfEMfXVlnbxMS/L+Vyb9QXqFljlEbsqnd4VTwlHm9lv9NH2K57B1VLlX\nLApKP526CU2eqbeQfFcbL6BtLELz2eLPcuUmYoUrstYfXjypzGKQQgZRTsc+lQce\nl8t22BEnmj3sp7Soobw0Xy1jH+hIMmLpibDNaGa5AoGBAOyPdYJZd0+BxIGbV/Do\nGrGgeRJ+dkR/mAWKdtYNPiPVeyBPNDZ4kzHlXaQqPv4ekG7d+GBhiu0/pbglXUkb\nw8thLY5Dt1ZQHdhr71JwRMY2KXjkpy+BSskeYFlQIUnMNy2I5dSemZDJ9ot2md5L\ngtOtc98LDkJ1wG+CqrH6p7EU\n-----END PRIVATE KEY-----\n",
+  "client_email": "voicereg@may-hack-voice.iam.gserviceaccount.com",
+  "client_id": "114435305188196097965",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/voicereg%40may-hack-voice.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

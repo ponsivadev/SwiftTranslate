@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Translation Web App</title>
+</head>
+<body>
+    <h1>Voice Translation Web App</h1>
+    <button id="startButton">Start Voice Input</button>
+    <div id="translationResult"></div>
+    <audio id="audioPlayer" controls style="display:none;"></audio>
+
+    <script>
+        document.getElementById('startButton').addEventListener('click', () => {
+            recognizeSpeech();
+        });
+
+        async function recognizeSpeech() {
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.start();
+
+            recognition.onresult = async (event) => {
+                const result = event.results[0][0].transcript;
+                document.getElementById('translationResult').innerText = `You said: ${result}`;
+
+                // Send the result to the backend for translation and conversion
+                const response = await fetch('http://127.0.0.1:8000/translate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: result })
+                });
+                const data = await response.json();
+                console.log('Translation:', data.translatedText);
+
+                // Play the translated audio
+                document.getElementById('audioPlayer').src = '/play';
+                document.getElementById('audioPlayer').play();
+            };
+        }
+    </script>
+</body>
+</html>

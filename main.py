@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://ponsivadev.github.io"],  # Add the origin where your frontend is hosted
+    allow_origins=["*"],  # Add the origin where your frontend is hosted
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],

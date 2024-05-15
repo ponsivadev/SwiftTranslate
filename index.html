@@ -55,8 +55,9 @@
                         </div>
                     </div>
                     <div class="row align-items-center justify-content-center w-100">
-                        <div class="col-2">
+                        <div class="col-2 position-relative">
                             <input id="upload" type="file" onchange="uploadFile()" />
+                            <span class="text-white position-absolute support-file">Support only .wav file</span>
                         </div>
                         <!-- <div class="col-2"> -->
                         <!-- <div id="play-button-container" title="Play">
@@ -114,8 +115,8 @@
                     document.getElementById('translatedText').innerText = data.translated;
                     document.getElementById('translationResult').innerText = "";
                     document.getElementById('audioPlayer').src = "https://3.109.98.254.nip.io" + data.file_name;
-                document.getElementById('audioPlayer').play();
-                $("#download-file").attr('href', "https://3.109.98.254.nip.io" + data.file_name);
+                    document.getElementById('audioPlayer').play();
+                    $("#download-file").attr('href', "https://3.109.98.254.nip.io" + data.file_name);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -132,7 +133,7 @@
             recognizeSpeech();
         });
 
-     
+
 
         async function recognizeSpeech() {
             var recognition;

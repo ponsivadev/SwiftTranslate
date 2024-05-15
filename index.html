@@ -56,7 +56,7 @@
                     </div>
                     <div class="row align-items-center justify-content-center w-100">
                         <div class="col-2">
-                            <input id="upload" type="file" accept="image/*" />
+                            <input id="upload" type="file" onchange="uploadFile()" />
                         </div>
                         <!-- <div class="col-2"> -->
                         <!-- <div id="play-button-container" title="Play">
@@ -77,6 +77,11 @@
                             <audio id="audioPlayer" controls style="display:none;"></audio>
                         </div>
                     </div>
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <div id="translatedText"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,12 +91,48 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script>
+
+        function uploadFile() {
+            const fileInput = document.getElementById('upload');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+            document.getElementById('translationResult').innerText = "File is uploading, please wait..."
+            fetch('https://3.109.98.254.nip.io/audio-to-text/', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('translatedText').innerText = data.translated;
+                    document.getElementById('translationResult').innerText = "";
+                    document.getElementById('audioPlayer').src = "https://3.109.98.254.nip.io" + data.file_name;
+                document.getElementById('audioPlayer').play();
+                $("#download-file").attr('href', "https://3.109.98.254.nip.io" + data.file_name);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('translationResult').innerText = "";
+                    alert('An error occurred while uploading the file.');
+                });
+        }
+
         $("#recordingButton").hide();
         document.getElementById('startButton').addEventListener('click', () => {
             $("#recordingButton").show()
             document.getElementById('translationResult').innerText = ``;
+            document.getElementById('translatedText').innerText = '';
             recognizeSpeech();
         });
+
+     
 
         async function recognizeSpeech() {
             var recognition;
@@ -122,6 +163,8 @@
                 $("#startButton").show()
                 $("#recordingButton").hide();
                 // Play the translated audio
+                document.getElementById('translatedText').innerText = data.translated;
+
                 document.getElementById('audioPlayer').src = "https://3.109.98.254.nip.io" + data.file_name;
                 document.getElementById('audioPlayer').play();
                 $("#download-file").attr('href', "https://3.109.98.254.nip.io" + data.file_name);

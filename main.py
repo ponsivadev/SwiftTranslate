@@ -70,7 +70,7 @@ async def recognize_and_translate(request: Request):
 
         print(f"Translated audio saved to '{file_name}'")
 
-        return {"status": "success", "file_name": file_name}
+        return {"status": "success", "file_name": f"/transcripts/{file_name}"}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

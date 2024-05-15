@@ -12,8 +12,6 @@ from datetime import datetime
 app = FastAPI()
 app.mount("/transcripts", StaticFiles(directory="transcripts"), name="transcripts")
 
-if __name__ == '__main__':
-    uvicorn.run(app, port=8080, host='0.0.0.0')
 
 app.add_middleware(
     CORSMiddleware,

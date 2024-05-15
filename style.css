@@ -151,14 +151,14 @@ svg .circle-svg {
     animation: spinning 3s ease-in-out infinite alternate;
 }
 
-#record-toggle:checked~svg .circle-svg {
+#record-recording:checked~svg .circle-svg {
     stroke-dasharray: 300;
     stroke-dashoffset: 300;
     -webkit-animation: dash 3s ease-in-out infinite alternate;
     animation: dash 3s ease-in-out infinite alternate;
 }
 
-#record-toggle:checked~.mic {
+#record-recording:checked~.mic {
     transform: scale(1.128);
     -webkit-animation: gone 0.5s 0.3s ease;
     animation: gone 0.5s 0.3s ease;
@@ -166,7 +166,7 @@ svg .circle-svg {
     animation-fill-mode: forwards;
 }
 
-#record-toggle:checked~.recording {
+#record-recording:checked~.recording {
     opacity: 1;
     transform: scale(0.98);
     transition-delay: 0.3s;
@@ -252,4 +252,225 @@ svg .circle-svg {
     to {
         stroke-dashoffset: 0;
     }
+}
+
+#play-button-container {
+    width: 100%;
+    height: 70px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.play-button {
+    display: inline-block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    transition: clip-path .3s ease;
+}
+
+.play-button-before {
+    clip-path: polygon(0 0, 50% 25%, 50% 75%, 0% 100%);
+}
+
+.play-button-after {
+    clip-path: polygon(50% 25%, 100% 50%, 100% 50%, 50% 75%);
+}
+
+#play-button-container:hover .play-button-before {
+    clip-path: polygon(0 0, 30% 0, 30% 100%, 0% 100%);
+}
+
+#play-button-container:hover .play-button-after {
+    clip-path: polygon(70% 0, 100% 0, 100% 100%, 70% 100%)
+}
+
+@keyframes button-shadow {
+    from {
+        transform: rotate(0);
+        bottom: -5px;
+        right: -5px;
+        opacity: 1;
+    }
+
+    to {
+        transform: rotate(40deg);
+        bottom: 50px;
+        right: -60px;
+        opacity: 0;
+    }
+}
+
+@keyframes button-arrow-rotate {
+    0% {
+        width: 15px;
+        margin: -25px auto 0;
+    }
+
+    1% {
+        width: 10px;
+        height: 0px;
+        margin-top: 15px;
+        transform: rotate(45deg);
+    }
+
+    100% {
+        width: 10px;
+        margin-top: 15px;
+        transform: rotate(45deg);
+        height: 35px;
+    }
+}
+
+@keyframes button-arrow-down {
+    from {
+        bottom: -25px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: -40px;
+        opacity: 0;
+    }
+}
+
+@keyframes button-arrow-up {
+    0% {
+        height: 20px;
+        transform: rotateZ(45deg);
+        right: -7px;
+    }
+
+    1% {
+        right: 0px;
+        height: 10px;
+        width: 0;
+        transform: rotateZ(0);
+    }
+
+    100% {
+        right: 0px;
+        height: 10px;
+        width: 20px;
+        transform: rotateZ(0);
+    }
+}
+
+button {
+    background-color: transparent;
+    width: 192px;
+    height: 70px;
+    border: none;
+    outline: none;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+#play-button-container:hover,
+button#btn-auto-click:hover {
+    border: 3px solid #ffff;
+    border-radius: 5px;
+}
+
+button .arrow {
+    height: 25px;
+    width: 15px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    margin: -25px auto 0;
+    position: relative;
+}
+
+button .arrow:after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    transform: rotateZ(45deg) translate(1px, 7px);
+    bottom: 0;
+    right: -7px;
+    transition: all 0.5s;
+    transition-delay: 0.5s;
+}
+
+button .arrow:before {
+    content: "";
+    background-color: #FFFFFF;
+    width: 25px;
+    height: 10px;
+    position: absolute;
+    left: -5px;
+    bottom: -25px;
+    border-radius: 2px;
+    transition: all 0.5s;
+}
+
+button:after,
+button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 100%;
+    bottom: -5px;
+    right: -5px;
+    border-radius: 5px;
+}
+
+button:after {
+    animation-play-state: pause;
+}
+
+button:active {
+    width: 180px;
+    height: 90px;
+}
+
+button:focus:after {
+    animation: button-shadow 1s;
+}
+
+button:focus .arrow {
+    animation: button-arrow-rotate 0.5s forwards;
+    animation-delay: 0.5s;
+}
+
+button:focus .arrow:after {
+    animation: button-arrow-up 0.5s forwards;
+    animation-delay: 0.5s;
+}
+
+button:focus .arrow:before {
+    animation: button-arrow-down 0.5s forwards;
+}
+
+input#upload {
+    display: block;
+}
+
+input#upload::-webkit-file-upload-button {
+    position: absolute;
+    padding: 10px 20px;
+    background-color: peru;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+    transition: 100ms ease-out;
+    cursor: pointer;
+}
+
+input#upload::-webkit-file-upload-button:hover {
+    background-color: #bd6e1f;
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12)
 }

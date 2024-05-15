@@ -82,7 +82,7 @@ async def upload_file(file: UploadFile = File(...)):
 
         print(f"Translated audio saved to '{file_name}'")
 
-        return {"status": "success", "file_name": f"/transcripts/{file_name}"}
+        return {"status": "success", "file_name": f"/transcripts/{file_name}" , "original": text, "translated": translated }
     except Exception as e:
         return {"error": str(e)}
 
@@ -110,7 +110,7 @@ async def recognize_and_translate(request: Request):
 
         print(f"Translated audio saved to '{file_name}'")
 
-        return {"status": "success", "file_name": f"/transcripts/{file_name}"}
+        return {"status": "success", "file_name": f"/transcripts/{file_name}", "original": text, "translated": translated }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -73,7 +73,7 @@
                 document.getElementById('translationResult').innerText = `You said: ${result}`;
 
                 // Send the result to the backend for translation and conversion
-                const response = await fetch('http://127.0.0.1:8000/translate', {
+                const response = await fetch('http://127.0.0.1:8877/recognize_and_translate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -81,10 +81,10 @@
                     body: JSON.stringify({ text: result })
                 });
                 const data = await response.json();
-                console.log('Translation:', data.translatedText);
+                console.log('Translation:', data.file_name);
 
                 // Play the translated audio
-                document.getElementById('audioPlayer').src = '/play';
+                document.getElementById('audioPlayer').src = data.file_name;
                 document.getElementById('audioPlayer').play();
             };
         }

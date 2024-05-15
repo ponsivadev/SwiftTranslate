@@ -82,7 +82,11 @@ async def upload_file(file: UploadFile = File(...)):
 
         print(f"Translated audio saved to '{file_name}'")
 
+<<<<<<< HEAD
+        return {"status": "success", "file_name": f"/transcripts/{file_name}", "original": text, "translated": translated }
+=======
         return {"status": "success", "file_name": f"/transcripts/{file_name}" , "original": text, "translated": translated }
+>>>>>>> 04ae655f0e80d89c90ff8a75c7c5250120fff5bc
     except Exception as e:
         return {"error": str(e)}
 

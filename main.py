@@ -1,13 +1,20 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 from google.cloud import translate_v2 as translate
 from google.oauth2 import service_account
 from gtts import gTTS
 import os
+from deep_translator import GoogleTranslator
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from datetime import datetime
 
 app = FastAPI()
+app.mount("/transcripts", StaticFiles(directory="transcripts"), name="transcripts")
+
+if __name__ == '__main__':
+    uvicorn.run(app, port=8080, host='0.0.0.0')
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:8000"],  # Add the origin where your frontend is hosted
@@ -39,6 +46,31 @@ async def translate_text(req: TranslationRequest):
 
     return {"translatedText": tamil_text}
 
-@app.get("/play/")
-async def play_audio():
-    return FileResponse("translated_text.mp3", media_type="audio/mpeg")
+
+@app.post("/recognize_and_translate/")
+async def recognize_and_translate(request: Request):
+    try:
+        text_input = await request.json()
+        text = text_input['text']
+        # Translate the text to Tamil
+        translated = GoogleTranslator(source='auto', target='ta').translate(text)
+        print("Translated to Tamil:", translated)
+
+        # Get the current timestamp
+        now = datetime.now()
+        timestamp_str = now.strftime("%Y%m%d_%H%M%S")
+
+        # Construct the file name with the timestamp
+        file_name = f"Tamil-Audio_{timestamp_str}.mp3"
+        file_path = os.path.join("./transcripts/", file_name)
+
+        # Convert the translated text to speech and save as an MP3 file
+        tts = gTTS(text=translated, lang='ta')
+        tts.save(file_path)
+
+        print(f"Translated audio saved to '{file_name}'")
+
+        return {"status": "success", "file_name": file_name}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
